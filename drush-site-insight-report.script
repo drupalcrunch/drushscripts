@@ -1,0 +1,25 @@
+#!/usr/bin/env drush
+
+//
+// This example demonstrates how to write a drush
+// "shebang" script. These scripts start with the
+// line "#!/usr/bin/env drush" or "#!/full/path/to/drush".
+//
+// See `drush topic docs-scripts` for more information.
+//
+drush_print("Drupal Site Insight Report");
+
+//Path to PHP
+$php = "c/xampp/php/php";
+
+//Path to Drush
+$drush_php = "c/ProgramData/Drush";
+
+//Execute Site Auidt and Generate Bootstrap Report
+$command2 = "drush aa --html --bootstrap --detail --skip=insights > drupal-site-insight-site-audit-report.html";
+$result = exec($command2, $output, $return);
+drupal_set_message(print_r(array($command, $result, $output, $return), 1));
+
+//Invoke Drush vget to know site_403 variable value 
+drush_invoke("vget",  array('site_403'));
+
